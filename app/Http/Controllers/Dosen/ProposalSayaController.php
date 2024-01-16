@@ -10,6 +10,8 @@ use Yajra\DataTables\Facades\DataTables;
 use App\Models\Admin\User;
 use App\Models\Dosen\ProposalPKM;
 use App\Models\Dosen\PesertaKegiatan;
+use PhpOffice\PhpWord\PhpWord;
+use PhpOffice\PhpWord\TemplateProcessor;
 
 class ProposalSayaController extends Controller
 {
@@ -143,5 +145,46 @@ class ProposalSayaController extends Controller
         return response()->json([
             'success' => 'Proposal PKM berhasil dihapus'
         ]);
+    }
+
+    public function toWord($id)
+    {
+        $proposal = ProposalPKM::find($id);
+
+        $templatePath = storage_path('app/public/file/Proposal_PKM TERBARU.docx');
+        $template = new TemplateProcessor($templatePath);
+        $template->setValues([
+            "nidn_dosen" => $proposal->user->nidn,
+            "nama_dosen" => $proposal->user->nama,
+            "golongan_dosen" => $proposal->user->golongan,
+            "prodi_dosen" => $proposal->user->program_studi,
+            "judul" => $proposal->judul,
+            "lokasi" => $proposal->lokasi,
+            "tanggal" => $proposal->tanggal,
+            "jam" => $proposal->jam,
+            "jenis_kegiatan" => $proposal->jenis_kegiatan,
+            "media" => $proposal->media,
+        ]);
+
+        $pesertaKegiatans = $proposal->pesertaKegiatans()->get();
+        $pesertas = [];
+        foreach ($pesertaKegiatans as $peserta) {
+            $pesertas[] = [
+                "nama_mahasiswa" => $peserta->nama_peserta,
+                "nim_mahasiswa" => $peserta->nim,
+                "prodi_mahasiswa" => $peserta->program_studi,
+                "peminatan_mahasiswa" => $peserta->peminatan
+            ];
+        }
+        $template->cloneRowAndSetValues('nama_mahasiswa', $pesertas);
+
+        $namaFile = $proposal->judul . ".docx";
+        $template->saveAs($namaFile);
+
+        return response()->download(
+            $namaFile,
+            $namaFile,
+            ['Content-Type' => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document']
+        )->deleteFileAfterSend(true);
     }
 }

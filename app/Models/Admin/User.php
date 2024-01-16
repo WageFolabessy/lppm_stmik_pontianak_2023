@@ -2,6 +2,7 @@
 
 namespace App\Models\Admin;
 
+use App\Models\Dosen\LaporanPKM;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -33,5 +34,10 @@ class User extends Authenticatable
     public function proposals()
     {
         return $this->hasMany(ProposalPkm::class);
+    }
+
+    public function laporansPKM()
+    {
+        return $this->hasMany(LaporanPKM::class);
     }
 }

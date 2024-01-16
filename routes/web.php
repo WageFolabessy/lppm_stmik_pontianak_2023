@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DaftarProposalController;
 use App\Http\Controllers\Dosen\ProfilDosenController;
 use App\Http\Controllers\Dosen\ProposalPKMController;
 use App\Http\Controllers\Dosen\ProposalSayaController;
+use App\Http\Controllers\Dosen\LaporanPKMController;
 use App\Http\Controllers\AuthController;
 
 /*
@@ -60,6 +61,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/daftar_proposal_pkm/tolak_proposal/{id}',  'tolakProposal');
         Route::post('/daftar_proposal_pkm/tambah_komentar/{id}',  'tambahKomentar');
         Route::delete('/daftar_proposal_pkm/hapus_proposal/{id}',  'destroy');
+        Route::get('/daftar_proposal_pkm/toWord/{id}',  'toWord')->name('admin.toWord');
     });
 });
 
@@ -89,5 +91,16 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::get('/proposal_saya/edit_proposal_pkm/{id}', 'edit');
         Route::post('/proposal_saya/update_proposal_pkm/{id}', 'update');
         Route::delete('/proposal_saya/hapus_proposal/{id}', 'destroy');
+        Route::get('/proposal_saya/toWord/{id}',  'toWord')->name('toWord');
+    });
+
+    Route::get('/laporan_pkm', function () {
+        return view('dosen.laporan-pkm');
+    })->name('dosen.laporan-pkm');
+
+    Route::controller(LaporanPKMController::class)->group(function () {
+        Route::get('/laproran_pkm/datatables', 'index');
+        Route::post('/laporan_pkm/unggah_laporan', 'store');
+        Route::delete('/laporan_pkm/hapus_laporan/{id}', 'destroy');
     });
 });

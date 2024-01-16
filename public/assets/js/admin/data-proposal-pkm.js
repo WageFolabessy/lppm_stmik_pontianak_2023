@@ -19,6 +19,7 @@ $("#tabelDataProposalPKM").DataTable({
     ],
 });
 
+// Tombol untuk melihat detail proposal
 $(document).on("click", "#tombol-detail", function (e) {
     let id = $(this).data("id");
 
@@ -36,6 +37,7 @@ $(document).on("click", "#tombol-detail", function (e) {
                 jenis_kegiatan,
                 peserta_kegiatans,
                 user,
+                status
             } = response;
 
             // Menampilkan data dosen
@@ -78,22 +80,35 @@ $(document).on("click", "#tombol-detail", function (e) {
             }
 
             // Terima Proposal Menambahkan event handler
-            $("#tombol_terima_proposal")
-                .off("click")
-                .on("click", function () {
-                    terimaProposal(id);
-                });
+            let tombolTerimaProposal = document.getElementById('tombol_terima_proposal');
+            if (status != "Disetujui") {
+                $("#tombol_terima_proposal")
+                    .off("click")
+                    .on("click", function () {
+                        terimaProposal(id);
+                    });
+                    tombolTerimaProposal.classList.remove('d-none');
+            } else {
+                tombolTerimaProposal.classList.add('d-none');
+            }
+
             // Tolak Proposal Menambahkan event handler
-            $("#tombol_tolak_proposal")
-                .off("click")
-                .on("click", function () {
-                    tolakProposal(id);
-                });
+            let tombolTolakProposal = document.getElementById('tombol_tolak_proposal');
+            if (status != "Ditolak") {
+                $("#tombol_tolak_proposal")
+                    .off("click")
+                    .on("click", function () {
+                        tolakProposal(id);
+                    });
+                    tombolTolakProposal.classList.remove('d-none');
+            } else {
+                tombolTolakProposal.classList.add('d-none');
+            }
         },
     });
 });
 
-// Function untuk menambah komentar
+// Tombol untuk menambah komentar
 $(document).on("click", "#tombol-komentar", function (e) {
     let id = $(this).data("id");
     // Terima Proposal Menambahkan event handler

@@ -143,22 +143,16 @@
                     </div>
                 </section>
             </div>
-            <div class="modal-footer row">
-                <div class="col-12 col-md-12 mb-3 mb-md-3">
-                    <button type="button" class="btn btn-success w-100" id="tombol_terima_proposal">
-                        Terima Proposal
-                    </button>
-                </div>
-                <div class="col-12 col-md-12 mb-3 mb-md-3">
-                    <button type="button" class="btn btn-warning w-100" id="tombol_tolak_proposal">
-                        Tolak Proposal
-                    </button>
-                </div>
-                <div class="col-12 col-md-12 mb-3 mb-md-3">
-                    <button type="button" class="btn btn-danger w-100" data-bs-dismiss="modal">
-                        Tutup
-                    </button>
-                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="tombol_terima_proposal">
+                    Terima Proposal
+                </button>
+                <button type="button" class="btn btn-warning" id="tombol_tolak_proposal">
+                    Tolak Proposal
+                </button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                    Tutup
+                </button>
             </div>
         </div>
     </div>

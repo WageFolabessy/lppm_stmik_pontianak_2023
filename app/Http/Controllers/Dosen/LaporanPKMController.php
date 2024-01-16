@@ -52,6 +52,10 @@ class LaporanPKMController extends Controller
             $laporanPKM->file_laporan = $path;
             $laporanPKM->user_id = auth()->user()->id;
             $laporanPKM->save();
+            $admins = User::where('is_admin', true)->get();
+            $admins->each(function ($admin) use ($laporanPKM) {
+            $admin->notify(new \App\Notifications\NewLaporanPKM($laporanPKM));
+        });
         } else {
             return response()->json(['error' => 'File laporan harus diisi'], 422);
         }

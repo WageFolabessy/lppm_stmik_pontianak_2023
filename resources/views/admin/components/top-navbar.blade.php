@@ -55,6 +55,21 @@
                                     </span>
                                 </div>
                             </a>
+                        @elseif ($notification->type == 'App\Notifications\NewLaporanPKM')
+                        <a class="dropdown-item d-flex align-items-center"
+                            href="{{ route('admin.daftar-proposal-pkm') }}">
+                            <div class="mr-3">
+                                <div class="icon-circle bg-primary">
+                                    <i class="fas fa-upload text-white"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="small text-gray-500">{{ $notification->data['tanggal'] }}</div>
+                                <span class="font-weight-bold">{{ $notification->data['nama'] }}
+                                    telah mengunggah laporan PKM dengan judul "{{ $notification->data['judul'] }}"
+                                </span>
+                            </div>
+                        </a>
                         @endif
                     @endforeach
                 @else

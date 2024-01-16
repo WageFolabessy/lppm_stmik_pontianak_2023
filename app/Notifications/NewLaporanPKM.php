@@ -49,6 +49,7 @@ class NewLaporanPKM extends Notification
         $tanggalBaru = date("j F Y, \j\a\m H:i", strtotime($tanggal));
         return [
             'judul' => $this->laporanPKM->judul_pkm,
+            'nama' => $this->laporanPKM->user->nama,
             'file_laporan' => $this->laporanPKM->file_laporan,
             'tanggal' => $tanggalBaru,
         ];

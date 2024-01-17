@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DataDosenController;
 use App\Http\Controllers\Admin\DaftarProposalController;
+use App\Http\Controllers\Admin\DaftarLaporanPKMController;
 use App\Http\Controllers\Dosen\ProfilDosenController;
 use App\Http\Controllers\Dosen\ProposalPKMController;
 use App\Http\Controllers\Dosen\ProposalSayaController;
@@ -46,6 +47,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/data_proposal_pkm', function () {
             return view('admin.daftar-proposal-pkm');
         })->name('admin.daftar-proposal-pkm');
+
+        Route::get('/data_laporan_pkm', function () {
+            return view('admin.daftar-laporan-pkm');
+        })->name('admin.daftar-laporan-pkm');
     });
     
     Route::controller(DataDosenController::class)->group(function () {
@@ -62,6 +67,11 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/daftar_proposal_pkm/tambah_komentar/{id}',  'tambahKomentar');
         Route::delete('/daftar_proposal_pkm/hapus_proposal/{id}',  'destroy');
         Route::get('/daftar_proposal_pkm/toWord/{id}',  'toWord')->name('admin.toWord');
+    });
+
+    Route::controller(DaftarLaporanPKMController::class)->group(function () {
+        Route::get('/daftar_laporan_pkm/datatables',  'index');
+        Route::get('/daftar_laporan_pkm/unduh/{id}',  'unduhLaporanPKM')->name('admin.unduhLaporanPKM');
     });
 });
 

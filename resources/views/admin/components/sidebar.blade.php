@@ -24,6 +24,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Menu:</h6>
                 <a class="collapse-item" href="{{ route('admin.daftar-proposal-pkm') }}">Daftar Proposal</a>
+                <a class="collapse-item" href="{{ route('admin.daftar-laporan-pkm') }}">Daftar Laporan</a>
             </div>
         </div>
     </li>

@@ -75,15 +75,15 @@
                     </select>
                 </div>
             </div>
-            <a href="#" id="tombol-update-profil" class="btn btn-warning text-dark mb-4" title="Update Profil">
-                Update Profil
+            <a href="#" id="tombol-update-profil" class="btn btn-primary text-white mb-4" title="Update Profil">
+                Ubah Profil
             </a>
         </div>
 
         {{-- Form Update Password --}}
         <div class="card p-3 mb-3">
             <h2 class="card-title text-body-secondary text-center">
-                Update Password
+                Ubah Password
             </h2>
             <!-- Toast untuk menampilkan pesan  -->
             <div class="toast border-0" role="alert" aria-live="assertive" id="toastPassword"
@@ -102,7 +102,7 @@
                         autocomplete="new-password" />
                 </div>
             </div>
-            <a href="#" id="tombol-update-password" class="btn btn-warning text-dark mb-4" title="Update Password">
+            <a href="#" id="tombol-update-password" class="btn btn-primary text-white mb-4" title="Update Password">
                 Update Password
             </a>
         </div>

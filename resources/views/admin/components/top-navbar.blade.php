@@ -81,14 +81,9 @@
                         </div>
                     </a>
                 @endif
-                <div style="position: sticky; bottom: 0" class="bg-secondary">
+                <div style="position: sticky; bottom: 0" class="bg-white">
                     @if (Auth::user()->unreadNotifications->count() > 0)
-                    <style>
-                        #notif-color:hover {
-                            color: black !important;
-                        }
-                    </style>
-                        <a class="dropdown-item text-center small text-white" id="notif-color"
+                        <a class="dropdown-item text-center small text-black" id="notif-color"
                             href="{{ route('notif.read') }}">
                             Tandai Semua Sudah Dibaca
                         </a>

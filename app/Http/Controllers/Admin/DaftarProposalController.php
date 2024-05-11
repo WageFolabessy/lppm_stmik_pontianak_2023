@@ -137,7 +137,7 @@ class DaftarProposalController extends Controller
     {
         $proposal = ProposalPKM::find($id);
 
-        $templatePath = storage_path('app/public/file/Proposal_PKM TERBARU.docx');
+        $templatePath = public_path('Proposal_PKM.docx');
         $template = new TemplateProcessor($templatePath);
         $template->setValues([
             "nidn_dosen" => $proposal->user->nidn,

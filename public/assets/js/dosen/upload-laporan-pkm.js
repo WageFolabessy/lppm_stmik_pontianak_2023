@@ -57,9 +57,9 @@ dropzone.on("success", function(file, response) {
 dropzone.on("error", function(file, response) {
     // Hapus file dari antrian Dropzone
     this.removeFile(file);
-    console.log(response)
+    
     document.getElementById("judulError").innerText = response.error.judul_pkm;
-    document.getElementById("fileLaporanError").innerText = response.error.file_laporan;
+    // document.getElementById("fileLaporanError").innerText = response.error.file_laporan;
 });
 
 // Proses unggah file saat tombol "Upload" diklik

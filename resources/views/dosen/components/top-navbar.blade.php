@@ -75,7 +75,7 @@
                     </a>
                 @endif
                 @if (Auth::user()->unreadNotifications->count() > 0)
-                    <a class="dropdown-item text-center small text-gray-500" href="{{ route('notif.read') }}">
+                    <a class="dropdown-item text-center small text-dark" href="{{ route('notif.read') }}">
                         Tandai Sudah Dibaca
                     </a>
                 @endif
